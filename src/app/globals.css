@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #f6f4ef;
+  --color-surface: #fffdf8;
+  --color-text: #1f2d2c;
+  --color-muted: #5e6a68;
+  --color-brand: #1f6f66;
+  --color-brand-soft: #d5ebe7;
+  --color-border: #d6ddd8;
+  --color-danger: #b6442c;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background:
+    radial-gradient(circle at 5% 8%, #eff9f6 0%, transparent 28%),
+    radial-gradient(circle at 95% 92%, #f3ebe1 0%, transparent 32%),
+    var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.panel {
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+  box-shadow: 0 1px 0 rgb(0 0 0 / 4%);
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.input-base {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+}
+
+.input-base:focus {
+  outline: 2px solid var(--color-brand-soft);
+  border-color: var(--color-brand);
+}
+
+.btn-primary {
+  border: none;
+  border-radius: 10px;
+  background: var(--color-brand);
+  color: #fff;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--color-text);
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
 }
