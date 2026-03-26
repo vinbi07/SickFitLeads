@@ -194,7 +194,9 @@ function getMultiSelectValues(event: React.ChangeEvent<HTMLSelectElement>) {
 
 export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
   const [state, setState] = useState<FormState>(initialFormState);
-  const [selectedPreset, setSelectedPreset] = useState<Preset["id"] | null>(null);
+  const [selectedPreset, setSelectedPreset] = useState<Preset["id"] | null>(
+    null,
+  );
 
   const fetchCountHelp = useMemo(() => {
     const value = Number(state.fetch_count);
@@ -253,7 +255,8 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
     <section className="panel p-5">
       <h2 className="text-lg font-semibold">Run Lead Scraper</h2>
       <p className="mt-1 text-sm text-[var(--color-muted)]">
-        Enter your criteria and click Run Scraper. We will save all leads to your dashboard.
+        Enter your criteria and click Run Scraper. We will save all leads to
+        your dashboard.
       </p>
 
       <div className="mt-4 rounded-xl border border-[var(--color-border)] bg-white p-4">
@@ -264,7 +267,11 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
               Start with a ready-made audience, then edit any field if needed.
             </p>
           </div>
-          <button type="button" className="btn-secondary" onClick={resetToDefault}>
+          <button
+            type="button"
+            className="btn-secondary"
+            onClick={resetToDefault}
+          >
             Reset
           </button>
         </div>
@@ -282,15 +289,22 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
               }`}
             >
               <p className="text-sm font-semibold">{preset.label}</p>
-              <p className="mt-1 text-xs text-[var(--color-muted)]">{preset.description}</p>
+              <p className="mt-1 text-xs text-[var(--color-muted)]">
+                {preset.description}
+              </p>
             </button>
           ))}
         </div>
       </div>
 
       <form className="mt-4 space-y-4" onSubmit={handleSubmit}>
-        <details className="rounded-xl border border-[var(--color-border)] bg-white p-4" open>
-          <summary className="cursor-pointer text-sm font-semibold">General</summary>
+        <details
+          className="rounded-xl border border-[var(--color-border)] bg-white p-4"
+          open
+        >
+          <summary className="cursor-pointer text-sm font-semibold">
+            General
+          </summary>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <div>
               <label className="field-label" htmlFor="fetch_count">
@@ -303,9 +317,16 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 min={1}
                 placeholder="Leave empty for all matches"
                 value={state.fetch_count}
-                onChange={(event) => setState((prev) => ({ ...prev, fetch_count: event.target.value }))}
+                onChange={(event) =>
+                  setState((prev) => ({
+                    ...prev,
+                    fetch_count: event.target.value,
+                  }))
+                }
               />
-              <p className="mt-1 text-xs text-[var(--color-muted)]">{fetchCountHelp}</p>
+              <p className="mt-1 text-xs text-[var(--color-muted)]">
+                {fetchCountHelp}
+              </p>
             </div>
             <div>
               <label className="field-label" htmlFor="file_name">
@@ -315,14 +336,24 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 id="file_name"
                 className="input-base"
                 value={state.file_name}
-                onChange={(event) => setState((prev) => ({ ...prev, file_name: event.target.value }))}
+                onChange={(event) =>
+                  setState((prev) => ({
+                    ...prev,
+                    file_name: event.target.value,
+                  }))
+                }
               />
             </div>
           </div>
         </details>
 
-        <details className="rounded-xl border border-[var(--color-border)] bg-white p-4" open>
-          <summary className="cursor-pointer text-sm font-semibold">People targeting</summary>
+        <details
+          className="rounded-xl border border-[var(--color-border)] bg-white p-4"
+          open
+        >
+          <summary className="cursor-pointer text-sm font-semibold">
+            People targeting
+          </summary>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <div className="md:col-span-2">
               <label className="field-label" htmlFor="contact_job_title">
@@ -333,7 +364,12 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 className="input-base"
                 placeholder="realtor, software developer, teacher"
                 value={state.contact_job_title}
-                onChange={(event) => setState((prev) => ({ ...prev, contact_job_title: event.target.value }))}
+                onChange={(event) =>
+                  setState((prev) => ({
+                    ...prev,
+                    contact_job_title: event.target.value,
+                  }))
+                }
               />
             </div>
             <div className="md:col-span-2">
@@ -345,7 +381,10 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 className="input-base"
                 value={state.contact_not_job_title}
                 onChange={(event) =>
-                  setState((prev) => ({ ...prev, contact_not_job_title: event.target.value }))
+                  setState((prev) => ({
+                    ...prev,
+                    contact_not_job_title: event.target.value,
+                  }))
                 }
               />
             </div>
@@ -359,7 +398,10 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 multiple
                 value={state.seniority_level}
                 onChange={(event) =>
-                  setState((prev) => ({ ...prev, seniority_level: getMultiSelectValues(event) }))
+                  setState((prev) => ({
+                    ...prev,
+                    seniority_level: getMultiSelectValues(event),
+                  }))
                 }
               >
                 {SENIORITY_OPTIONS.map((option) => (
@@ -379,7 +421,10 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 multiple
                 value={state.functional_level}
                 onChange={(event) =>
-                  setState((prev) => ({ ...prev, functional_level: getMultiSelectValues(event) }))
+                  setState((prev) => ({
+                    ...prev,
+                    functional_level: getMultiSelectValues(event),
+                  }))
                 }
               >
                 {FUNCTIONAL_OPTIONS.map((option) => (
@@ -392,8 +437,13 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
           </div>
         </details>
 
-        <details className="rounded-xl border border-[var(--color-border)] bg-white p-4" open>
-          <summary className="cursor-pointer text-sm font-semibold">Location (Include)</summary>
+        <details
+          className="rounded-xl border border-[var(--color-border)] bg-white p-4"
+          open
+        >
+          <summary className="cursor-pointer text-sm font-semibold">
+            Location (Include)
+          </summary>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <div>
               <label className="field-label" htmlFor="contact_location">
@@ -404,7 +454,12 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 className="input-base"
                 placeholder="EMEA, United States, California"
                 value={state.contact_location}
-                onChange={(event) => setState((prev) => ({ ...prev, contact_location: event.target.value }))}
+                onChange={(event) =>
+                  setState((prev) => ({
+                    ...prev,
+                    contact_location: event.target.value,
+                  }))
+                }
               />
             </div>
             <div>
@@ -416,14 +471,24 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 className="input-base"
                 placeholder="San Francisco, Austin"
                 value={state.contact_city}
-                onChange={(event) => setState((prev) => ({ ...prev, contact_city: event.target.value }))}
+                onChange={(event) =>
+                  setState((prev) => ({
+                    ...prev,
+                    contact_city: event.target.value,
+                  }))
+                }
               />
             </div>
           </div>
         </details>
 
-        <details className="rounded-xl border border-[var(--color-border)] bg-white p-4" open>
-          <summary className="cursor-pointer text-sm font-semibold">Location (Exclude)</summary>
+        <details
+          className="rounded-xl border border-[var(--color-border)] bg-white p-4"
+          open
+        >
+          <summary className="cursor-pointer text-sm font-semibold">
+            Location (Exclude)
+          </summary>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <div>
               <label className="field-label" htmlFor="contact_not_location">
@@ -434,7 +499,10 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 className="input-base"
                 value={state.contact_not_location}
                 onChange={(event) =>
-                  setState((prev) => ({ ...prev, contact_not_location: event.target.value }))
+                  setState((prev) => ({
+                    ...prev,
+                    contact_not_location: event.target.value,
+                  }))
                 }
               />
             </div>
@@ -446,14 +514,24 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 id="contact_not_city"
                 className="input-base"
                 value={state.contact_not_city}
-                onChange={(event) => setState((prev) => ({ ...prev, contact_not_city: event.target.value }))}
+                onChange={(event) =>
+                  setState((prev) => ({
+                    ...prev,
+                    contact_not_city: event.target.value,
+                  }))
+                }
               />
             </div>
           </div>
         </details>
 
-        <details className="rounded-xl border border-[var(--color-border)] bg-white p-4" open>
-          <summary className="cursor-pointer text-sm font-semibold">Email quality</summary>
+        <details
+          className="rounded-xl border border-[var(--color-border)] bg-white p-4"
+          open
+        >
+          <summary className="cursor-pointer text-sm font-semibold">
+            Email quality
+          </summary>
           <div className="mt-4">
             <label className="field-label" htmlFor="email_status">
               Email status
@@ -462,7 +540,12 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
               id="email_status"
               className="input-base"
               value={state.email_status[0] ?? "validated"}
-              onChange={(event) => setState((prev) => ({ ...prev, email_status: [event.target.value] }))}
+              onChange={(event) =>
+                setState((prev) => ({
+                  ...prev,
+                  email_status: [event.target.value],
+                }))
+              }
             >
               {EMAIL_STATUS_OPTIONS.map((option) => (
                 <option key={option} value={option}>
@@ -473,8 +556,13 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
           </div>
         </details>
 
-        <details className="rounded-xl border border-[var(--color-border)] bg-white p-4" open>
-          <summary className="cursor-pointer text-sm font-semibold">Company targeting</summary>
+        <details
+          className="rounded-xl border border-[var(--color-border)] bg-white p-4"
+          open
+        >
+          <summary className="cursor-pointer text-sm font-semibold">
+            Company targeting
+          </summary>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <div className="md:col-span-2">
               <label className="field-label" htmlFor="company_domain">
@@ -485,7 +573,12 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 className="input-base"
                 placeholder="google.com, https://apple.com"
                 value={state.company_domain}
-                onChange={(event) => setState((prev) => ({ ...prev, company_domain: event.target.value }))}
+                onChange={(event) =>
+                  setState((prev) => ({
+                    ...prev,
+                    company_domain: event.target.value,
+                  }))
+                }
               />
             </div>
             <div>
@@ -497,7 +590,12 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 className="input-base min-h-40"
                 multiple
                 value={state.size}
-                onChange={(event) => setState((prev) => ({ ...prev, size: getMultiSelectValues(event) }))}
+                onChange={(event) =>
+                  setState((prev) => ({
+                    ...prev,
+                    size: getMultiSelectValues(event),
+                  }))
+                }
               >
                 {COMPANY_SIZE_OPTIONS.map((option) => (
                   <option key={option} value={option}>
@@ -515,7 +613,12 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 className="input-base min-h-40"
                 multiple
                 value={state.funding}
-                onChange={(event) => setState((prev) => ({ ...prev, funding: getMultiSelectValues(event) }))}
+                onChange={(event) =>
+                  setState((prev) => ({
+                    ...prev,
+                    funding: getMultiSelectValues(event),
+                  }))
+                }
               >
                 {FUNDING_OPTIONS.map((option) => (
                   <option key={option} value={option}>
@@ -532,7 +635,12 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 id="company_industry"
                 className="input-base"
                 value={state.company_industry}
-                onChange={(event) => setState((prev) => ({ ...prev, company_industry: event.target.value }))}
+                onChange={(event) =>
+                  setState((prev) => ({
+                    ...prev,
+                    company_industry: event.target.value,
+                  }))
+                }
               />
             </div>
             <div>
@@ -544,7 +652,10 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 className="input-base"
                 value={state.company_not_industry}
                 onChange={(event) =>
-                  setState((prev) => ({ ...prev, company_not_industry: event.target.value }))
+                  setState((prev) => ({
+                    ...prev,
+                    company_not_industry: event.target.value,
+                  }))
                 }
               />
             </div>
@@ -556,7 +667,12 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 id="company_keywords"
                 className="input-base"
                 value={state.company_keywords}
-                onChange={(event) => setState((prev) => ({ ...prev, company_keywords: event.target.value }))}
+                onChange={(event) =>
+                  setState((prev) => ({
+                    ...prev,
+                    company_keywords: event.target.value,
+                  }))
+                }
               />
             </div>
             <div>
@@ -568,7 +684,10 @@ export function RunActorForm({ isLoading, onSubmit }: RunActorFormProps) {
                 className="input-base"
                 value={state.company_not_keywords}
                 onChange={(event) =>
-                  setState((prev) => ({ ...prev, company_not_keywords: event.target.value }))
+                  setState((prev) => ({
+                    ...prev,
+                    company_not_keywords: event.target.value,
+                  }))
                 }
               />
             </div>

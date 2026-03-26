@@ -24,11 +24,11 @@ Production-ready MVP for a multi-user leads tracking system built with Next.js, 
 
 1. Install dependencies:
 
-	npm install
+   npm install
 
 2. Copy environment template:
 
-	copy .env.example .env.local
+   copy .env.example .env.local
 
 3. Fill in .env.local values:
 
@@ -38,7 +38,7 @@ Production-ready MVP for a multi-user leads tracking system built with Next.js, 
 
 4. Start dev server:
 
-	npm run dev
+   npm run dev
 
 ## 2) Apply database migration
 

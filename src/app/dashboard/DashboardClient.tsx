@@ -39,10 +39,16 @@ export default function DashboardClient({ userEmail }: DashboardClientProps) {
     <div className="space-y-5">
       <div className="grid gap-5 xl:grid-cols-[1.4fr_1fr]">
         <RunActorForm isLoading={isLoading} onSubmit={handleSubmit} />
-        <JobStatusList jobs={jobsQuery.data ?? []} isLoading={jobsQuery.isLoading} />
+        <JobStatusList
+          jobs={jobsQuery.data ?? []}
+          isLoading={jobsQuery.isLoading}
+        />
       </div>
 
-      <LeadTable leads={leadsQuery.data ?? []} isLoading={leadsQuery.isLoading || isLoading} />
+      <LeadTable
+        leads={leadsQuery.data ?? []}
+        isLoading={leadsQuery.isLoading || isLoading}
+      />
 
       <p className="text-xs text-[var(--color-muted)]" aria-live="polite">
         Signed in as {userEmail}

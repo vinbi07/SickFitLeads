@@ -17,7 +17,10 @@ export default function LoginPage() {
     const supabase = createSupabaseBrowserClient();
 
     setIsLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
     setIsLoading(false);
 
     if (error) {
@@ -34,7 +37,9 @@ export default function LoginPage() {
     <main className="mx-auto flex min-h-screen w-full max-w-md items-center px-4">
       <section className="panel w-full p-6">
         <h1 className="text-2xl font-bold">Log in</h1>
-        <p className="mt-1 text-sm text-[var(--color-muted)]">Use your email and password to access your dashboard.</p>
+        <p className="mt-1 text-sm text-[var(--color-muted)]">
+          Use your email and password to access your dashboard.
+        </p>
 
         <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
           <div>
@@ -64,13 +69,23 @@ export default function LoginPage() {
             />
           </div>
 
-          <button className="btn-primary w-full" type="submit" disabled={isLoading}>
+          <button
+            className="btn-primary w-full"
+            type="submit"
+            disabled={isLoading}
+          >
             {isLoading ? "Logging in..." : "Log in"}
           </button>
         </form>
 
         <p className="mt-4 text-sm text-[var(--color-muted)]">
-          No account yet? <Link href="/signup" className="font-semibold text-[var(--color-brand)]">Create one</Link>
+          No account yet?{" "}
+          <Link
+            href="/signup"
+            className="font-semibold text-[var(--color-brand)]"
+          >
+            Create one
+          </Link>
         </p>
       </section>
     </main>

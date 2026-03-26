@@ -28,10 +28,13 @@ export function DashboardLayout({ userEmail, children }: DashboardLayoutProps) {
       <header className="mb-6 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 shadow-sm">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">SickFit Leads</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">
+              SickFit Leads
+            </p>
             <h1 className="text-2xl font-bold">Leads Dashboard</h1>
             <p className="mt-1 text-sm text-[var(--color-muted)]">
-              Run your scraper, monitor job status, search results, and export CSV.
+              Run your scraper, monitor job status, search results, and export
+              CSV.
             </p>
           </div>
           <div className="flex items-center gap-3">

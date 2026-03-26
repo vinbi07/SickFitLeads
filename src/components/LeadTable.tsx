@@ -21,7 +21,9 @@ const columns: ColumnDef<Lead>[] = [
   {
     header: "Name",
     accessorKey: "name",
-    cell: ({ row }) => <span className="font-medium">{row.original.name || "-"}</span>,
+    cell: ({ row }) => (
+      <span className="font-medium">{row.original.name || "-"}</span>
+    ),
   },
   {
     header: "Email",
@@ -57,7 +59,12 @@ export function LeadTable({ leads, isLoading }: LeadTableProps) {
     getPaginationRowModel: getPaginationRowModel(),
     globalFilterFn: (row, _, filterValue) => {
       const search = String(filterValue).toLowerCase();
-      return [row.original.name, row.original.email, row.original.company, row.original.source]
+      return [
+        row.original.name,
+        row.original.email,
+        row.original.company,
+        row.original.source,
+      ]
         .join(" ")
         .toLowerCase()
         .includes(search);
@@ -74,7 +81,9 @@ export function LeadTable({ leads, isLoading }: LeadTableProps) {
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-lg font-semibold">Leads</h2>
-          <p className="text-sm text-[var(--color-muted)]">Search, filter, and export your saved leads.</p>
+          <p className="text-sm text-[var(--color-muted)]">
+            Search, filter, and export your saved leads.
+          </p>
         </div>
         <DownloadCSVButton leads={filteredRows} />
       </div>
@@ -100,12 +109,21 @@ export function LeadTable({ leads, isLoading }: LeadTableProps) {
           <table className="w-full border-collapse text-sm">
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id} className="border-b border-[var(--color-border)] bg-[#f8faf9]">
+                <tr
+                  key={headerGroup.id}
+                  className="border-b border-[var(--color-border)] bg-[#f8faf9]"
+                >
                   {headerGroup.headers.map((header) => (
-                    <th key={header.id} className="px-3 py-2 text-left font-semibold">
+                    <th
+                      key={header.id}
+                      className="px-3 py-2 text-left font-semibold"
+                    >
                       {header.isPlaceholder
                         ? null
-                        : flexRender(header.column.columnDef.header, header.getContext())}
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
                     </th>
                   ))}
                 </tr>
@@ -114,23 +132,35 @@ export function LeadTable({ leads, isLoading }: LeadTableProps) {
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td className="px-3 py-6 text-center text-[var(--color-muted)]" colSpan={columns.length}>
+                  <td
+                    className="px-3 py-6 text-center text-[var(--color-muted)]"
+                    colSpan={columns.length}
+                  >
                     Loading leads...
                   </td>
                 </tr>
               ) : table.getRowModel().rows.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <tr key={row.id} className="border-b border-[var(--color-border)] last:border-b-0">
+                  <tr
+                    key={row.id}
+                    className="border-b border-[var(--color-border)] last:border-b-0"
+                  >
                     {row.getVisibleCells().map((cell) => (
                       <td key={cell.id} className="px-3 py-2 align-top">
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
                       </td>
                     ))}
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td className="px-3 py-6 text-center text-[var(--color-muted)]" colSpan={columns.length}>
+                  <td
+                    className="px-3 py-6 text-center text-[var(--color-muted)]"
+                    colSpan={columns.length}
+                  >
                     No rows match your current filters.
                   </td>
                 </tr>
@@ -150,7 +180,8 @@ export function LeadTable({ leads, isLoading }: LeadTableProps) {
           Previous
         </button>
         <p className="text-sm text-[var(--color-muted)]">
-          Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount() || 1}
+          Page {table.getState().pagination.pageIndex + 1} of{" "}
+          {table.getPageCount() || 1}
         </p>
         <button
           type="button"

@@ -34,7 +34,9 @@ export default function SignupPage() {
     <main className="mx-auto flex min-h-screen w-full max-w-md items-center px-4">
       <section className="panel w-full p-6">
         <h1 className="text-2xl font-bold">Create account</h1>
-        <p className="mt-1 text-sm text-[var(--color-muted)]">Create your secure account to save and manage leads.</p>
+        <p className="mt-1 text-sm text-[var(--color-muted)]">
+          Create your secure account to save and manage leads.
+        </p>
 
         <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
           <div>
@@ -65,13 +67,23 @@ export default function SignupPage() {
             />
           </div>
 
-          <button className="btn-primary w-full" type="submit" disabled={isLoading}>
+          <button
+            className="btn-primary w-full"
+            type="submit"
+            disabled={isLoading}
+          >
             {isLoading ? "Creating account..." : "Create account"}
           </button>
         </form>
 
         <p className="mt-4 text-sm text-[var(--color-muted)]">
-          Already have an account? <Link href="/login" className="font-semibold text-[var(--color-brand)]">Log in</Link>
+          Already have an account?{" "}
+          <Link
+            href="/login"
+            className="font-semibold text-[var(--color-brand)]"
+          >
+            Log in
+          </Link>
         </p>
       </section>
     </main>
